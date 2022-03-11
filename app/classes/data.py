@@ -4,7 +4,6 @@
 # data you are creating an onject that is an instance of the class.
 
 from app import app
-from flask import flash
 from flask_login import UserMixin
 from mongoengine import FileField, EmailField, StringField, ReferenceField, DateTimeField, CASCADE
 from flask_mongoengine import Document
@@ -21,6 +20,7 @@ class User(UserMixin, Document):
     lname = StringField()
     email = EmailField()
     image = FileField()
+    role = StringField()
     
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -38,7 +38,6 @@ class User(UserMixin, Document):
             id = jwt.decode(token, app.config['SECRET_KEY'],
                             algorithms=['HS256'])['reset_password']
         except:
-            flash("Could not verify reset password token.")
             return
         return User.objects.get(pk=id)
 
