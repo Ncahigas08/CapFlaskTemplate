@@ -24,10 +24,6 @@
         <img class="img-thumbnail" width="100" src="/static/bdog.jpg"> {% endif %} <br> {{ form.image() }}<br> {% for error in form.image.errors %}
         <span style="color: red;">[{{ error }}]</span> {% endfor %}
     </p>
-    <p>
-        {{ form.role.label }}<br> {{ form.role() }}<br> {% for error in form.role.errors %}
-        <span style="color: red;">[{{ error }}]</span> {% endfor %}
-    </p>
     <p>{{ form.submit() }}</p>
 </form>
 
