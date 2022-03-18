@@ -66,6 +66,7 @@ class ProfileForm(FlaskForm):
 class PostForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
     content = TextAreaField('Post', validators=[DataRequired()])
+    knowledgeLevel = SelectField('Role',choices=[("Master","Master"),("Novice","Novice"), ("Knowledgeable", "Knowledgeable")])
     submit = SubmitField('Post')
 
 class CommentForm(FlaskForm):

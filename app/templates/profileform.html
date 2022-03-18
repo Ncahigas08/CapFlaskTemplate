@@ -18,6 +18,15 @@
         {{ form.lname.label }}<br> {{ form.lname(size=64) }}<br> {% for error in form.lname.errors %}
         <span style="color: red;">[{{ error }}]</span> {% endfor %}
     </p>
+    <!--for every subsection of info-->
+    <p>
+        {{ form.role.label }}<br> {{ form.role() }}<br> {% for error in form.role.errors %}
+        <span style="color: red;">[{{ error }}]</span> {% endfor %}
+    </p>
+    <p>
+        {{ form.plant.label }}<br> {{ form.plant() }}<br> {% for error in form.plant.errors %}
+        <span style="color: red;">[{{ error }}]</span> {% endfor %}
+    </p>
     <p>
         {{ form.image.label }}<br> {% if current_user.image %}
         <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br> {% else %}
