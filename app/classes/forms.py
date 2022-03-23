@@ -68,6 +68,13 @@ class PostForm(FlaskForm):
     knowledgeLevel = SelectField('Role',choices=[("Master","Master"),("Novice","Novice"), ("Knowledgeable", "Knowledgeable")])
     submit = SubmitField('Post')
 
+class ArtForm(FlaskForm):
+    title = StringField('Subject', validators=[DataRequired()])
+    picture = TextAreaField('Art', validators=[DataRequired()])
+    description = StringField('Subject', validators=[DataRequired()])
+    tag = StringField('Subject', validators=[DataRequired()])
+    submit = SubmitField('Art')
+
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')
