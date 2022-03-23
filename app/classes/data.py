@@ -67,3 +67,12 @@ class Comment(Document):
     meta = {
         'ordering': ['-createdate']
     }
+
+class Art(Document):
+    title = StringField()
+    description = StringField()
+    tag = StringField()
+    picture = FileField()
+    author = ReferenceField('User', reverse_delete_rule=CASCADE)
+    create = DateTimeField(default=dt.datetime.utcnow)
+    modify = DateTimeField()
