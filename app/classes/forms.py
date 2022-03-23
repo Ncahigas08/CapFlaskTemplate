@@ -61,13 +61,14 @@ class ProfileForm(FlaskForm):
     submit = SubmitField('Post')
     
 
-
+#Initial Post 
 class PostForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
     content = TextAreaField('Post', validators=[DataRequired()])
     knowledgeLevel = SelectField('Role',choices=[("Master","Master"),("Novice","Novice"), ("Knowledgeable", "Knowledgeable")])
     submit = SubmitField('Post')
 
+#Art Post Feature
 class ArtForm(FlaskForm):
     title = StringField('Subject', validators=[DataRequired()])
     picture = TextAreaField('Art', validators=[DataRequired()])
@@ -75,6 +76,7 @@ class ArtForm(FlaskForm):
     tag = StringField('Subject', validators=[DataRequired()])
     submit = SubmitField('Art')
 
+#Comment Feature for Post
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')

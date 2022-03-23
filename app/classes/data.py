@@ -68,6 +68,7 @@ class Comment(Document):
         'ordering': ['-createdate']
     }
 
+#post art feature
 class Art(Document):
     title = StringField()
     description = StringField()
@@ -75,4 +76,4 @@ class Art(Document):
     picture = FileField()
     author = ReferenceField('User', reverse_delete_rule=CASCADE)
     create = DateTimeField(default=dt.datetime.utcnow)
-    modify = DateTimeField()
+    modifyDate = DateTimeField()
