@@ -74,6 +74,7 @@ class Art(Document):
     description = StringField()
     tag = StringField()
     picture = FileField()
-    author = ReferenceField('User', reverse_delete_rule=CASCADE)
+    #creator of work
+    artist = ReferenceField('User', reverse_delete_rule=CASCADE)
     create = DateTimeField(default=dt.datetime.utcnow)
     modifyDate = DateTimeField()
