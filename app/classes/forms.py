@@ -70,11 +70,12 @@ class PostForm(FlaskForm):
 
 #Art Post Feature
 class ArtForm(FlaskForm):
-    title = StringField('Subject', validators=[DataRequired()])
-    picture = TextAreaField('Art', validators=[DataRequired()])
-    description = StringField('Subject', validators=[DataRequired()])
-    tag = StringField('Subject', validators=[DataRequired()])
-    submit = SubmitField('Art')
+    title = StringField('Title', validators=[DataRequired()])
+    picture = FileField("Picture")
+    description = StringField('Description', validators=[DataRequired()])
+    tag = StringField('Tags', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+    
 
 #Comment Feature for Post
 class CommentForm(FlaskForm):

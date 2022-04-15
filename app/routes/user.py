@@ -34,10 +34,6 @@ def profileEdit():
         currUser.update(
             lname = form.lname.data,
             fname = form.fname.data,
-        )
-        currUser.update(
-            lname = form.lname.data,
-            fname = form.fname.data,
             role = form.role.data,
             plant = form.plant.data
         )

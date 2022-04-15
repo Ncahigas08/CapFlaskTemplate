@@ -76,5 +76,5 @@ class Art(Document):
     picture = FileField()
     #creator of work
     artist = ReferenceField('User', reverse_delete_rule=CASCADE)
-    create = DateTimeField(default=dt.datetime.utcnow)
+    createDate = DateTimeField(default=dt.datetime.utcnow)
     modifyDate = DateTimeField()
