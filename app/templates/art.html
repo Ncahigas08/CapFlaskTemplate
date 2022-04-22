@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block body %} {% if art %} {{moment(art.createdate).calendar()}} by {{art.artist.username}} {% endif %} {% if art.modifydate %} modified {{moment(art.modifydate).calendar()}} {% endif %}
+{% extends 'base.html' %} {% block body %} {% if art %} {{moment(art.createDate).calendar()}} by {{art.artist.username}} {% endif %} {% if art.modifydate %} modified {{moment(art.modifydate).calendar()}} {% endif %}
 <br> {% if art.artist == current_user %}
 <a data-toggle="tooltip" data-placement="top" title="Delete Art Post" href="/art/delete/{{art.id}}">
     <img width="40" class="bottom-image" src="/static/delete.png">
@@ -9,9 +9,9 @@
 
 {% endif %}
 
-<h1 class="display-5">{{art.title}}bob</h1>
+<h1 class="display-5">{{art.title}}</h1>
 <p class="fs-3 text-break">
-    {% if art.author.image %}
+    {% if art.artist.image %}
     <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(art.author.image.read())}}"> {% endif %} {{art.content}}
 </p>
 <a href="/comment/new/{{art.id}}" class="btn btn-primary btn-sm" role="button">New Comment</a> {% endblock %}
