@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block body %} {% if post %} {{moment(art.createdate).calendar()}} by {{art.artist.username}} {% if art.modifydate %} modified {{moment(art.modifydate).calendar()}} {% endif %}
+<br> {% if art.artist == current_user %}
+<a data-toggle="tooltip" data-placement="top" title="Delete Art Post" href="/art/delete/{{art.id}}">
+    <img width="40" class="bottom-image" src="/static/delete.png">
+</a>
+<a data-toggle="tooltip" data-placement="top" title="Edit Art Post" href="/art/edit/{{art.id}}">
+    <img width="40" class="bottom-image" src="/static/edit.png">
+</a>
+{% endif %}
+
+<h1 class="display-5">{{art.title}}</h1>
+<p class="fs-3 text-break">
+    {% if art.author.image %}
+    <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(art.author.image.read())}}"> {% endif %} {{art.content}}
+</p>
+<a href="/comment/new/{{art.id}}" class="btn btn-primary btn-sm" role="button">New Comment</a>
+
+<div class="ms-5">
+    {% if comments %}
+    <h1 class="display-5">Comments</h1>
+    {% for comment in comments %} {% if current_user == comment.author %}
+    <a href="/comment/delete/{{comment.id}}"><img width="20" src="/static/delete.png"></a>
+    <a href="/comment/edit/{{comment.id}}"><img width="20" src="/static/edit.png"></a>
+    {% endif %} {{moment(comment.createdate).calendar()}} {{comment.author.username}} {% if comment.modifydate %} modified {{moment(comment.modifydate).calendar()}} {% endif %}
+    <br>
+    <p class="fs-3">
+        {{comment.content}}
+    </p>
+    {% endfor %} {% else %}
+    <h1 class="display-5">No Comments</h1>
+    {% endif %}
+</div>
+{% else %}
+<h1 class="display-5">
+    no art :(
+</h1>
+<div class="row">
+
+    <div class="col-2">
+        {% if current_user.image %}
+        <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(current_user.image.read())}}"> <br> {% else %}
+        <img class="img-thumbnail" width="100" src="/static/bdog.jpg"> {% endif %}
+    </div>
+
+    <div class="col-md-3">
+        {% if art.title %} Title: {{art.title}} {% endif %}
+    </div>
+
+
+</div>
+{% endif %} {% endblock %}

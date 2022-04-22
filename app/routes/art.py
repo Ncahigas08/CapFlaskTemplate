@@ -45,10 +45,15 @@ def artNew():
         # to send them to that post. url_for takes as its argument the function name
         # for that route (the part after the def key word). You also need to send any
         # other values that are needed by the route you are redirecting to.
-        return redirect(url_for('post',postID=newArt.id))
+        return redirect(url_for('art',artID=newArt.id))
 
     # if form.validate_on_submit() is false then the user either has not yet filled out
     # the form or the form had an error and the user is sent to a blank form. Form errors are 
     # stored in the form object and are displayed on the form. take a look at postform.html to 
     # see how that works.
     return render_template('postArt.html',form=form)
+
+@app.route('/art/<artID>')
+def art(artID):
+    thisArt = Art.objects.get(id=artID)
+    return render_template('art.html')
