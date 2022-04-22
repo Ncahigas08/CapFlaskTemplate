@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block body %} {% if art %} {{moment(art.createdate).calendar()}} by {{art.artist.username}} {% if art.modifydate %} modified {{moment(art.modifydate).calendar()}} {% endif %}
+{% extends 'base.html' %} {% block body %} {% if art %} {{moment(art.createdate).calendar()}} by {{art.artist.username}} {% endif %} {% if art.modifydate %} modified {{moment(art.modifydate).calendar()}} {% endif %}
 <br> {% if art.artist == current_user %}
 <a data-toggle="tooltip" data-placement="top" title="Delete Art Post" href="/art/delete/{{art.id}}">
     <img width="40" class="bottom-image" src="/static/delete.png">

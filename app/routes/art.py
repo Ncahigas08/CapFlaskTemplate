@@ -56,4 +56,4 @@ def artNew():
 @app.route('/art/<artID>')
 def art(artID):
     thisArt = Art.objects.get(id=artID)
-    return render_template('art.html')
+    return render_template('art.html', art = thisArt)
