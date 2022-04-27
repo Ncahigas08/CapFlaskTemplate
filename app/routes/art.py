@@ -53,6 +53,48 @@ def artNew():
     # see how that works.
     return render_template('postArt.html',form=form)
 
+
+#Delete Art Post
+@app.route('/art/delete/<artID>')
+# Only run this route if the user is logged in.
+@login_required
+def artDelete(artID):
+    # retrieve the post to be deleted using the postID
+    deleteArtPost = Art.objects.get(id=artID)
+    # check to see if the user that is making this request is the author of the post.
+    # current_user is a variable provided by the 'flask_login' library.
+    if current_user == deleteArtPost.author:
+        # delete the post using the delete() method from Mongoengine
+        deleteArtPost.delete()
+        # send a message to the user that the post was deleted.
+        flash('The Post was deleted.')
+    else:
+        # if the user is not the author tell them they were denied.
+        flash("You can't delete a post you don't own.")
+    # Retrieve all of the remaining posts so that they can be listed.
+    apost = Art.objects()  
+    # Send the user to the list of remaining posts.
+    return render_template('gallery.html',gallery=gallery)
+
+# This route actually does two things depending on the state of the if statement 
+# 'if form.validate_on_submit()'. When the route is first called, the form has not 
+# been submitted yet so the if statement is False and the route renders the form.
+# If the user has filled out and succesfully submited the form then the if statement
+# is True and this route creates the new post based on what the user put in the form.
+# Because this route includes a form that both gets and posts data it needs the 'methods'
+# in the route decorator.
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/art/<artID>')
 def art(artID):
     thisArt = Art.objects.get(id=artID)
@@ -67,10 +109,10 @@ def CommentArtNew(artID):
     if artForm.validate_on_submit():
         newComment = CommentArtForm(
             author = current_user.id,
-            art = artID,
+            art = artID, 
             acontent = art.acontent.data
         )
         newComment.save()
         return redirect(url_for('art',artID=artID))
-    return render_template('commentArtForm.html', form=artForm,art=art)
+    return render_template('commentArtForm.html', form=form,art=art)
 
