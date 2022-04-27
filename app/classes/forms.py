@@ -76,6 +76,10 @@ class ArtForm(FlaskForm):
     tag = StringField('Tags', validators=[DataRequired()])
     submit = SubmitField('Submit')
     
+#Comment Feature for Art Post
+class CommentArtForm(FlaskForm):
+    acontent=TextAreaField('Comment', validators=[DataRequired()])
+    asubmit = SubmitField('Comment')
 
 #Comment Feature for Post
 class CommentForm(FlaskForm):

@@ -3,7 +3,7 @@ import mongoengine.errors
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
 from app.classes.data import Art
-from app.classes.forms import ArtForm
+from app.classes.forms import ArtForm, CommentArtForm
 from flask_login import login_required
 import datetime as dt
 
@@ -57,3 +57,20 @@ def artNew():
 def art(artID):
     thisArt = Art.objects.get(id=artID)
     return render_template('art.html', art = thisArt)
+
+# COMMENTING FOR ART FORM
+@app.route('/commentArt/newArt/<artID>', methods=['GET', 'POST'])
+@login_required
+def CommentArtNew(artID):
+    art = Art.objects.get(id=artID)
+    artForm = CommentArtForm()
+    if artForm.validate_on_submit():
+        newComment = CommentArtForm(
+            author = current_user.id,
+            art = artID,
+            acontent = art.acontent.data
+        )
+        newComment.save()
+        return redirect(url_for('art',artID=artID))
+    return render_template('commentArtForm.html', form=artForm,art=art)
+

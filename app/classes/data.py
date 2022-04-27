@@ -67,6 +67,20 @@ class Comment(Document):
     meta = {
         'ordering': ['-createdate']
     }
+    
+#comment art feature 
+class CommentArt(Document):
+    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
+    post = ReferenceField('Post',reverse_delete_rule=CASCADE)
+    # This could be used to allow comments on comments
+    # comment = ReferenceField('Comment',reverse_delete_rule=CASCADE)
+    acontent = StringField()
+    createdate = DateTimeField(default=dt.datetime.utcnow)
+    modifydate = DateTimeField()
+
+    meta = {
+        'ordering': ['-createdate']
+    }
 
 #post art feature
 class Art(Document):
