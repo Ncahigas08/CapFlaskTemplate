@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block body %}
+<!--List all errors in a group at the top-->
+{% for field in art.errors %} {% for error in art.errors[field] %}
+<div class="alert alert-error">
+    <strong>Error!</strong>{{field}}: {{error}}
+</div>
+{% endfor %} {% endfor %}
+
+<h1 class="display-5">{{art.title}}</h1>
+{{art.acontent}} <br>
+<h1 class="display-5">New Comment</h1>
+
+<form method=art>
+    {{ art.hidden_tag() }}{{ art.acontent.label }} <br> {{ art.acontent(cols=64) }}
+    <!--List the errors for this field-->
+    {% for error in art.acontent.errors %}
+    <span style="color: red;">[{{ error }}]</span> {% endfor %}
+    <br> {{art.submit()}}
+</form>
+
+{% endblock %}

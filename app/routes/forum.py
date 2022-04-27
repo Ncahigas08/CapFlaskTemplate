@@ -204,3 +204,5 @@ def commentDelete(commentID):
     deleteComment.delete()
     flash('The comments was deleted.')
     return redirect(url_for('post',postID=deleteComment.post.id)) 
+
+
