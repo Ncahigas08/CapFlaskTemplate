@@ -73,13 +73,13 @@ class ArtForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     picture = FileField("Picture")
     description = StringField('Description', validators=[DataRequired()])
-    tag = StringField('Tags', validators=[DataRequired()])
+    team = StringField('team', validators=[DataRequired()])
     submit = SubmitField('Submit')
     
 #Comment Feature for Art Post
 class CommentArtForm(FlaskForm):
     acontent=TextAreaField('Comment', validators=[DataRequired()])
-    asubmit = SubmitField('Comment')
+    submit = SubmitField('Comment')
 
 #Comment Feature for Post
 class CommentForm(FlaskForm):

@@ -9,7 +9,7 @@
     </div>
 </div>
 
-{% if gallery %} {% for art in gallery %}
+{% if gallery %} {% for apost in gallery %}
 <div class="row border-bottom">
     <div class="col-2">
         {% if loop.index == 1 %}
@@ -17,7 +17,7 @@
         {% endif %}
 
         <a href="/art/{{art.id}}">
-                    {{moment(art.createdate).calendar()}}
+                    {{moment(art.createDate).calendar()}}
                 </a>
     </div>
     <div class="col-2">
@@ -27,8 +27,8 @@
     </div>
     <div class="col">
         {% if loop.index == 1 %}
-        <h3 class="display-5">Subject</h3>
-        {% endif %} {{art.subject}}
+        <h3 class="display-5">Title</h3>
+        {% endif %} {{art.title}}
     </div>
 </div>
 {% endfor %} {% else %}

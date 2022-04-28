@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block body %}
 <!--List all errors in a group at the top-->
-{% for field in art.errors %} {% for error in art.errors[field] %}
+{% for field in form.errors %} {% for error in form.errors[field] %}
 <div class="alert alert-error">
     <strong>Error!</strong>{{field}}: {{error}}
 </div>
@@ -10,12 +10,12 @@
 {{art.acontent}} <br>
 <h1 class="display-5">New Comment</h1>
 
-<form method=art>
-    {{ art.hidden_tag() }}{{ art.acontent.label }} <br> {{ art.acontent(cols=64) }}
+<form method="post">
+    {{ form.hidden_tag() }}{{ form.acontent.label }} <br> {{ form.acontent(cols=64) }}
     <!--List the errors for this field-->
-    {% for error in art.acontent.errors %}
+    {% for error in form.acontent.errors %}
     <span style="color: red;">[{{ error }}]</span> {% endfor %}
-    <br> {{art.submit()}}
+    <br> {{form.submit()}}
 </form>
 
 {% endblock %}
