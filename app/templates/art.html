@@ -1,5 +1,5 @@
  {% extends 'base.html' %} {% block body %}
-<link rel="stylesheet" href="styles.css"> {% if art %} {{moment(art.createDate).calendar()}} by {{art.artist.username}} {% endif %} {% if art.modifydate %} modified {{moment(art.modifydate).calendar()}} {% endif %}
+<link rel="stylesheet" href="styles.css"> {% if art %} {{moment(art.createDate).calendar()}} by {{art.artist.username}} {% endif %} {% if art.modifyDate %} modified {{moment(art.modifyDate).calendar()}} {% endif %}
 <br> {% if art.artist == current_user %}
 <a data-toggle="tooltip" data-placement="top" title="Delete Art Post" href="/art/delete/{{art.id}}">
     <img width="40" class="bottom-image" src="/static/delete.png">
@@ -14,6 +14,7 @@
 
 <div>
     <p> {{art.description}}</p>
+    <p>{{art.tag}}</p>
 </div>
 <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(art.picture.read())}}" width="300">
 
@@ -22,4 +23,23 @@
     {% if art.artist.image %}
     <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(art.author.image.read())}}"> {% endif %} {{art.content}}
 </p>
-<a href="/commentArt/newArt/{{art.id}}" class="btn btn-primary btn-sm" role="button">New Comment</a> {% endblock %}
+<a href="/commentArt/newArt/{{art.id}}" class="btn btn-primary btn-sm" role="button">New Comment</a>
+
+
+
+<div class="ms-5">
+    {% if acomments %}
+    <h1 class="display-5">comment section</h1>
+    {% for comment in acomments %} {% if current_user == comment.author %}
+    <a href="/commentArt/deleteArt/{{comment.id}}"><img width="20" src="/static/delete.png"></a>
+    <a href="/commentArt/editArt/{{comment.id}}"><img width="20" src="/static/edit.png"></a>
+    {% endif %}{{comment.acontent}} {{moment(comment.createdate).calendar()}} {{comment.author.username}} {% if comment.modifydate %} modified {{moment(comment.modifydate).calendar()}} {% endif %}
+    <br>
+    <p class="fs-3">
+        {{comment.acontent}}
+    </p>
+    {% endfor %} {% else %}
+    <h1 class="display-5">No Comments</h1>
+    {% endif %}
+</div>
+{% endblock %}

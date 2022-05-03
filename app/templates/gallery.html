@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block body %}
+
+<div class="row">
+    <div class="col-4">
+        <h1 class="display-1">Art Gallery</h1>
+    </div>
+    <div class="col">
+        <a href="/art/new" class="btn btn-primary btn-sm mt-5" role="button"> CREATE!!</a>
+    </div>
+</div>
+
+{% if gallery %} {% for apost in gallery %}
+<div class="row border-bottom">
+    <div class="col-2">
+        {% if loop.index == 1 %}
+        <h3 class="display-5">Date</h3>
+        {% endif %}
+
+        <a href="/art/{{art.id}}">
+                    {{moment(art.createDate).calendar()}}
+                </a>
+    </div>
+    <div class="col-2">
+        {% if loop.index == 1 %}
+        <h3 class="display-5">User</h3>
+        {% endif %} {{art.artist.username}}
+    </div>
+    <div class="col">
+        {% if loop.index == 1 %}
+        <h3 class="display-5">Title</h3>
+        {% endif %} {{art.title}}
+    </div>
+</div>
+{% endfor %} {% else %}
+<h1>No Posts</h1>
+{% endif %} {% endblock %}

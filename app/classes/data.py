@@ -68,10 +68,23 @@ class Comment(Document):
         'ordering': ['-createdate']
     }
     
+
+
+#post art feature
+class Art(Document):
+    title = StringField()
+    description = StringField()
+    team = StringField()
+    picture = FileField()
+    #creator of work
+    artist = ReferenceField('User', reverse_delete_rule=CASCADE)
+    createDate = DateTimeField(default=dt.datetime.utcnow)
+    modifyDate = DateTimeField()
+    
 #comment art feature 
 class CommentArt(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 
-    post = ReferenceField('Post',reverse_delete_rule=CASCADE)
+    art = ReferenceField('Art',reverse_delete_rule=CASCADE)
     # This could be used to allow comments on comments
     # comment = ReferenceField('Comment',reverse_delete_rule=CASCADE)
     acontent = StringField()
@@ -81,14 +94,3 @@ class CommentArt(Document):
     meta = {
         'ordering': ['-createdate']
     }
-
-#post art feature
-class Art(Document):
-    title = StringField()
-    description = StringField()
-    tag = StringField()
-    picture = FileField()
-    #creator of work
-    artist = ReferenceField('User', reverse_delete_rule=CASCADE)
-    createDate = DateTimeField(default=dt.datetime.utcnow)
-    modifyDate = DateTimeField()
