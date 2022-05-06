@@ -9,7 +9,7 @@
     </div>
 </div>
 
-{% if gallery %} {% for apost in gallery %}
+{% if gallery %} {% for art in gallery %}
 <div class="row border-bottom">
     <div class="col-2">
         {% if loop.index == 1 %}
@@ -29,6 +29,13 @@
         {% if loop.index == 1 %}
         <h3 class="display-5">Title</h3>
         {% endif %} {{art.title}}
+    </div>
+    <div class="col">
+        {% if loop.index == 1%}
+        <h3 class="display-5"> ART</h3>
+        {%endif%}
+
+        <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(art.picture.read())}}" width=170>
     </div>
 </div>
 {% endfor %} {% else %}
