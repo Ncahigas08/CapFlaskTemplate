@@ -73,7 +73,7 @@ class ArtForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     picture = FileField("Picture")
     description = StringField('Description', validators=[DataRequired()])
-    team = StringField('team', validators=[DataRequired()])
+    team = StringField('Team', validators=[DataRequired()])
     submit = SubmitField('Submit')
     
 #Comment Feature for Art Post
