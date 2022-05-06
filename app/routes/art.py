@@ -19,7 +19,7 @@ def artList():
     # This renders (shows to the user) the posts.html template. it also sends the posts object 
     # to the template as a variable named posts.  The template uses a for loop to display
     # each post.
-    return render_template('posts.html',apost=apost)
+    return render_template('gallery.html',apost=apost)
 
 #new art
 @app.route('/art/<artID>')

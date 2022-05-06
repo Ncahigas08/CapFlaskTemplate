@@ -31,9 +31,9 @@
 
     <!--tag -->
     <p>
-        {{ form.tag.label }} <br> {{ form.tag(cols=64, rows=10) }}
+        {{ form.team.label }} <br> {{ form.team(cols=64, rows=10) }}
         <!--List the errors for this field-->
-        {% for error in form.tag.errors %}
+        {% for error in form.team.errors %}
         <span style="color: red;">[{{ error }}]</span> {% endfor %}
     </p>
 
