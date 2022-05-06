@@ -74,9 +74,9 @@ class Comment(Document):
 class Art(Document):
     title = StringField()
     description = StringField()
-    team = StringField()
     picture = FileField()
     #creator of work
+    plant = ReferenceField('User', reverse_delete_rule=CASCADE)
     artist = ReferenceField('User', reverse_delete_rule=CASCADE)
     createDate = DateTimeField(default=dt.datetime.utcnow)
     modifyDate = DateTimeField()

@@ -1,5 +1,5 @@
  {% extends 'base.html' %} {% block body %}
-<link rel="stylesheet" href="styles.css"> {% if art %} {{moment(art.createDate).calendar()}} by {{art.artist.username}} {% endif %} {% if art.modifyDate %} modified {{moment(art.modifyDate).calendar()}} {% endif %}
+<link rel="stylesheet" href="styles.css"> {% if art %} {{moment(art.createDate).calendar()}} by {{art.artist.username}} {{art.artist.plant}} {% endif %} {% if art.modifyDate %} modified {{moment(art.modifyDate).calendar()}} {% endif %}
 <br> {% if art.artist == current_user %}
 <a data-toggle="tooltip" data-placement="top" title="Delete Art Post" href="/art/delete/{{art.id}}">
     <img width="40" class="bottom-image" src="/static/delete.png">
@@ -14,7 +14,7 @@
 
 <div>
     <p> {{art.description}}</p>
-    <p>{{art.team}}</p>
+    <p> Team: {{art.artist.plant}}</p>
 </div>
 <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(art.picture.read())}}" width="300">
 

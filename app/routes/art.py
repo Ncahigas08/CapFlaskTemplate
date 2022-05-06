@@ -15,11 +15,11 @@ import datetime as dt
 def artList():
     # This retrieves all of the 'posts' that are stored in MongoDB and places them in a
     # mongoengine object as a list of dictionaries name 'posts'.
-    apost = Art.objects()
+    gallery = Art.objects()
     # This renders (shows to the user) the posts.html template. it also sends the posts object 
     # to the template as a variable named posts.  The template uses a for loop to display
     # each post.
-    return render_template('gallery.html',apost=apost)
+    return render_template('gallery.html',gallery=gallery)
 
 #new art
 @app.route('/art/<artID>')
@@ -51,7 +51,6 @@ def artNew():
             title = form.title.data,
             description = form.description.data,
             artist = current_user.id,
-            team = form.team.data,
             modifyDate = dt.datetime.utcnow
         )
                 # This updates the profile image
@@ -128,7 +127,6 @@ def artEdit(artID):
         editArtPost.update(
             title = form.title.data,
             description = form.description.data,
-            team = form.team.data,
             modifyDate = dt.datetime.utcnow
         )
         # After updating the document, send the user to the updated post using a redirect.
