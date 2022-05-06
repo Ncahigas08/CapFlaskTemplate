@@ -29,12 +29,6 @@ def art(artID):
     return render_template('art.html', art = thisArt, acomments=theseArtComments)
 
 
-
-
-
-
-
-
 #new artwork
 @app.route('/art/new', methods=['GET', 'POST'])
 # This means the user must be logged in to see this page
