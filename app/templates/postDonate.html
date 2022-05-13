@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block body %}
+<h1></h1>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <p>
+        <!--title -->
+        {{ form.title.label }} <br> {{ form.title(size=64) }}
+        <!--List the errors for this field-->
+        {% for error in form.title.errors %}
+        <span style="color: red;">[{{ error }}]</span> {% endfor %}
+    </p>
+
+
+    <!--picture -->
+    <p>
+        {{ form.picture.label }}<br> {% if current_user.picture %}
+        <img class="img-thumbnail" width="100" src="data:image;base64,{{base64encode(current_user.picture.read())}}"> <br> {% else %}
+        <img class="img-thumbnail" width="100" src="/static/fileIcon.jpg"> {% endif %} <br> {{ form.picture() }}<br> {% for error in form.picture.errors %}
+        <span style="color: red;">[{{ error }}]</span> {% endfor %}
+    </p>
+
+
+    <!-- description-->
+    <p>
+        {{ form.description.label }} <br> {{ form.description(cols=64, rows=10) }}
+        <!--List the errors for this field-->
+        {% for error in form.description.errors %}
+        <span style="color: red;">[{{ error }}]</span> {% endfor %}
+    </p>
+
+    <!--tag -->
+
+
+    <!--submit -->
+
+
+
+
+    <p>
+        {{form.submit()}}
+    </p>
+</form>
+
+{% endblock %}

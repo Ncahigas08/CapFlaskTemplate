@@ -1,19 +1,66 @@
 <!-- This is a blank template.  You can copy this to make a new template page. -->
 
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block body %}
+<p>
+    <h3 class=" text-center">Donate Today!</p>
+</h3>
 
-{% block body %}
-<p><h3 class=" text-center">Donate Today!</p></h3>
-
-<p><h3 class=" text-center"><form action="https://www.wetlands.org/donate/donate-today/">
-    <input type="submit" value="Click To Donate!" /></h3></p>
+<p>
+    <h3 class=" text-center">
+        <form action="https://www.wetlands.org/donate/donate-today/">
+            <input type="submit" value="Click To Donate!" /></h3>
+</p>
 </form>
 
 <h3 class=" text-center">A Statement from Wetlands International</h3>
 <h5 class=" text-center">We are the global not-for-profit organisation dedicated to the conservation and restoration of wetlands. Our vision is a world where wetlands are treasured and nurtured for their beauty, the life they support and the resources they provide.</h5>
 
-<p><h4 class=" text-center"><img src=https://www.wetlands.org/wp-content/uploads/2016/02/Logo_Wetlands_Full-Colour-for-Screens_Web-Large.jpg height="200"> 
-<br>
-<br>
-<h6 class=" text-center">Leave a comment, question or feedback down below!</h6>
-{% endblock %}
+<p>
+    <h4 class=" text-center"><img src=https://www.wetlands.org/wp-content/uploads/2016/02/Logo_Wetlands_Full-Colour-for-Screens_Web-Large.jpg height="200">
+        <br>
+        <br>
+        <h6 class=" text-center">Leave a comment, question or feedback down below!</h6>
+
+
+        <marquee direction="right"><img src="http://assets.stickpng.com/images/580b57fbd9996e24bc43bcda.png" alt="" width="100"> <img src="http://assets.stickpng.com/images/580b57fbd9996e24bc43bcda.png" alt="" width="100"><img src="http://assets.stickpng.com/images/580b57fbd9996e24bc43bcda.png"
+                alt="" width="100"></marquee>
+        <div class="row">
+            <div class="col-4">
+                <h1 class="display-1">donate</h1>
+            </div>
+            <div class="col">
+                <a href="/donate/new" class="btn btn-primary btn-sm mt-5" role="button"> comment here!!</a>
+            </div>
+        </div>
+
+        {% if donation %} {% for donate in donation %}
+        <div class="row border-bottom">
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">Date</h3>
+                {% endif %}
+
+                <a href="/donate/{{donate.id}}">
+                    {{moment(donate.createDate).calendar()}}
+                </a>
+            </div>
+            <div class="col-2">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">User</h3>
+                {% endif %} {{donate.artist.username}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                <h3 class="display-5">Title</h3>
+                {% endif %} {{donate.title}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1%}
+                <h3 class="display-5"> COMMENT</h3>
+                {%endif%}
+
+            </div>
+        </div>
+        {% endfor %} {% else %}
+        <h1>No Posts</h1>
+        {% endif %} {% endblock %}

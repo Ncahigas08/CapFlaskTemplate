@@ -67,7 +67,15 @@ class Comment(Document):
     meta = {
         'ordering': ['-createdate']
     }
-    
+
+#post donate feature
+class Donate(Document):
+    title = StringField()
+    description = StringField()
+    plant = ReferenceField('User', reverse_delete_rule=CASCADE)
+    artist = ReferenceField('User', reverse_delete_rule=CASCADE)
+    createDate = DateTimeField(default=dt.datetime.utcnow)
+    modifyDate = DateTimeField()
 
 
 #post art feature
@@ -88,6 +96,19 @@ class CommentArt(Document):
     # This could be used to allow comments on comments
     # comment = ReferenceField('Comment',reverse_delete_rule=CASCADE)
     acontent = StringField()
+    createdate = DateTimeField(default=dt.datetime.utcnow)
+    modifydate = DateTimeField()
+
+    meta = {
+        'ordering': ['-createdate']
+    }
+#comment donate feature 
+class CommentDonate(Document):
+    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
+    # This could be used to allow comments on comments
+    # comment = ReferenceField('Comment',reverse_delete_rule=CASCADE)
+    donation = ReferenceField('Art',reverse_delete_rule=CASCADE)
+    dcontent = StringField()
     createdate = DateTimeField(default=dt.datetime.utcnow)
     modifydate = DateTimeField()
 
