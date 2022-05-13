@@ -15,3 +15,8 @@ def aboutus():
 @app.route('/info')
 def info():
     return render_template('info.html')
+
+@app.route('/donation')
+def donation():
+    return render_template('donation.html')
+
