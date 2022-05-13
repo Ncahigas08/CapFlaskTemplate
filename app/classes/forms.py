@@ -85,6 +85,11 @@ class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')
     
-class CommentDonate(FlaskForm):
+class CommentDonateForm(FlaskForm):
     dcontent=TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Comment')
+    
+class DonateForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    description = StringField('Description', validators=[DataRequired()])
+    submit = SubmitField('Submit')
