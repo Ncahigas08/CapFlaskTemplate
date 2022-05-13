@@ -55,8 +55,8 @@ class ResetPasswordForm(FlaskForm):
 class ProfileForm(FlaskForm):
     fname = StringField('First Name', validators=[DataRequired()])
     lname = StringField('Last Name', validators=[DataRequired()]) 
-    role = SelectField('Role',choices=[("Teacher","Teacher"),("Student","Student")])
-    plant = SelectField('Plant Level',choices=[("Leafling","Leafling"),("ExperTree","ExperTree")])
+    role = SelectField('Role',choices=[("Leafling","Leafling"),("ExperTree","ExperTree")])
+    plant = SelectField('Plant Level',choices=[("Team Snail","Team Snail"),("Team Bird","Team Bird")])
     image = FileField("Image") 
     submit = SubmitField('Post')
     
