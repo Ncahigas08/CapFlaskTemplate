@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block body %}
-
+<marquee direction="right" ><img src="http://assets.stickpng.com/images/580b57fbd9996e24bc43bcda.png" alt="" width="100"> <img src="http://assets.stickpng.com/images/580b57fbd9996e24bc43bcda.png" alt="" width="100"><img src="http://assets.stickpng.com/images/580b57fbd9996e24bc43bcda.png" alt="" width="100"></marquee>
 <div class="row">
     <div class="col-4">
         <h1 class="display-1">Art Gallery</h1>
@@ -34,8 +34,9 @@
         {% if loop.index == 1%}
         <h3 class="display-5"> ART</h3>
         {%endif%}
-
+        {% if art.picture %}
         <img class="img-thumbnail img-fluid" src="data:image;base64,{{base64encode(art.picture.read())}}" width=170>
+        {% endif %}
     </div>
 </div>
 {% endfor %} {% else %}
